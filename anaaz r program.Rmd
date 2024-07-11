@@ -1,0 +1,45 @@
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+str(faithful)
+head(faithful)
+summary(faithful)
+```
+
+```{r}
+missing_values <- sapply(faithful, function(x) sum(is.na(x)))
+print(missing_values)
+```
+
+```{r}
+# Visualize the data
+# Histogram for numerical variables
+num_vars <- sapply(faithful, is.numeric)
+num_data <- faithful[, num_vars]
+```
+
+```{r}
+# boxplot
+ggplot(faithful, aes(x =eruptions, y =waiting)) +
+  geom_boxplot(fill = "orange", color = "black") +
+  theme_minimal() +
+  labs(title = "Boxplot of Humidity by Season", x= "eruptions", y= "waiting")
+```
+
+```{r}
+# Scatter plot to show the relationship between two numeric variables (replace 'temp' and 'humidity' with appropriate column names)
+ggplot(faithful, aes(x = eruptions, y = waiting)) +
+  geom_point(color = "red") +
+  theme_minimal() +
+  labs(title = "Scatter Plot of Temperature vs Humidity", x = "eruptions", y = "waiting")
+```
+
+```{r}
+# Time series plot for a variable over time (replace 'date' and 'temp' with appropriate column names)
+ggplot(faithful, aes(x = eruptions , y = waiting)) +
+  geom_line(color = "blue") +
+  theme_minimal() +
+  labs(title = "eruptions vs waiting", x = "eruptions", y = "waiting")
+```
+
